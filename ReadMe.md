@@ -61,11 +61,11 @@ All the modules and technology stack for this project is aligned toward the prof
 3. `grunt dist`  - generates stg/dist/prod copy of project in **_root/dist_** folder.
 
 
+## NOTE: THIS REPOSITORY HAS VULNARABLE SECURITY DEPENDECIES, SUGGESTED TO MIGRATE TO ANGULAR 2+.
 
 
-
-## _Happy Coding :-)_
-### Email : janraorishikesh@gmail.com
+### _Happy Coding :-)_
+#### Email : janraorishikesh@gmail.com
 
 
 

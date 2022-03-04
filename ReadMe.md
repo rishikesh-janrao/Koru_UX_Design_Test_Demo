@@ -65,7 +65,7 @@ All the modules and technology stack for this project is aligned toward the prof
 
 
 ## _Happy Coding :-)_
-## Email : mailto:janraorishikesh@gmail.com
+### Email : janraorishikesh@gmail.com
 
 
 

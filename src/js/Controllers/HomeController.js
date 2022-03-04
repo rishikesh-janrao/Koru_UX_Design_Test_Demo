@@ -17,9 +17,9 @@ app.controller("HomeController", function ($scope, $location, $timeout, DataServ
   $scope.formData.webRef = '';
 
   $scope.reset = function () {
-    $scope.formData.name = '';
-    $scope.formData.desc = '';
-    $scope.formData.webRef = '';
+    $scope.formData.name = null;
+    $scope.formData.desc = null;
+    $scope.formData.webRef = null;
   }
 
 
@@ -52,7 +52,15 @@ app.controller("HomeController", function ($scope, $location, $timeout, DataServ
   };
 
   $scope.hideAlertsPopup = function (id) {
-    ModalService.Close(id);
+    document.getElementById("myForm").reset();
+    $scope.reset();
+    $scope.error = false;
+    $scope.nameError = false;
+    $scope.descError = false;
+    $scope.webRefError = false;
+    if(!$scope.error)
+      ModalService.Close(id);
+      $scope.danger = false;
   }
 
   $scope.setSelection = function (sel) {
@@ -66,7 +74,7 @@ app.controller("HomeController", function ($scope, $location, $timeout, DataServ
 
   $scope.addAlert = function (form) {
     var alert = new Object();
-    alert.id = $scope.alerts.length > 0 ? $scope.alerts[$scope.alerts.length - 1].id + 1 : 1;
+    alert.id = $scope.MasterAlertData.length > 0 ? $scope.MasterAlertData[$scope.MasterAlertData.length - 1].id + 1 : 1;
 
     $scope.nameError = $scope.formData.name ? false : true;
     $scope.descError = $scope.formData.desc ? false : true;;
@@ -80,9 +88,10 @@ app.controller("HomeController", function ($scope, $location, $timeout, DataServ
       $scope.nameError = false;
       $scope.descError = false;
       $scope.webRefError = false;
-      $scope.alerts.push(alert);
+      $scope.MasterAlertData.push(alert);
       $scope.added = true;
       $scope.hideBanner();
+      $scope.goToPage($scope.totalPages);
       alert = null;
       document.getElementById("myForm").reset();
       $scope.reset();
@@ -144,7 +153,32 @@ app.controller("HomeController", function ($scope, $location, $timeout, DataServ
   $scope.initPaging = function () {
     $scope.totalPages = $scope.alerts.length / 5;
     $scope.currentPage = 1;
+    $scope.goToPage($scope.currentPage)
 
+  }
+  $scope.loadPageNo = function () {
+    $scope.alerts = [];
+    let start = ($scope.currentPage * 5) - 5
+    let end = $scope.currentPage * 5;
+    for (start; start <= end; start++) {
+      $scope.alerts.push($scope.MasterAlertData[start]);
+    }
+  }
 
+  $scope.goToPage = function (no) {
+    if (no != null) {
+      switch (no) {
+        case "N":
+          $scope.currentPage = $scope.currentPage == $scope.totalPages ? $scope.currentPage : $scope.currentPage + 1;
+          break;
+        case "B":
+          $scope.currentPage = $scope.currentPage == 0 ? $scope.currentPage : $scope.currentPage - 1;
+          break;
+        default:
+          $scope.currentPage = (no > 0 && no <= $scope.totalPages && no != 0) ? no : $scope.currentPage;
+          break;
+      }
+      $scope.loadPageNo();
+    }
   }
 });

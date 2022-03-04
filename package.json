@@ -1,11 +1,11 @@
 {
-  "name": "frontend-workflows-with-angularjs",
+  "name": "koru-ux",
   "version": "0.0.0",
   "description": "README.md",
   "main": "Gruntfile.js",
   "repository": "",
   "private": true,
-  "author": "david mosher",
+  "author": "RIshikesh Janrao",
   "license": "BSD",
   "dependencies": {
     "angular-ui-bootstrap": "^2.5.6",

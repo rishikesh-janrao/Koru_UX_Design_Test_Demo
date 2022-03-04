@@ -1,0 +1,14 @@
+<div>
+    <div class="home-container">
+        <div ng-include="'app/Home/alerts-modal.html'"> </div>
+        <div ng-show="added" class="banner-alert success">
+            <span class="closebtn" ng-click="hideBanner()">&times;</span>
+            <label> Added to the alerts</label>
+        </div>
+        <div ng-show="error" class="banner-alert danger">
+            <span class="closebtn" ng-click="hideBanner()">&times;</span>
+            <label> Please enter all fields to add to alerts !</label>
+        </div>
+        <button ng-click="showAlertsPopup('custom-modal-1')">Show Alerts</button>
+    </div>
+</div>

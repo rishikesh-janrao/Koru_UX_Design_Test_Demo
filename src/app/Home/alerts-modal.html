@@ -1,0 +1,106 @@
+<modal id="custom-modal-1" type="modal">
+    <div class="modal">
+        <div class="modal-body">
+            <div class="modal-title-row">
+                <label class="modal-title-text">
+                    Alerts
+                </label>
+                <img src="assets/close.svg" ng-click="hideAlertsPopup('custom-modal-1');" width="22" height="22" />
+            </div>
+            <div class="menu">
+                <div class="menu-item" ng-class="{'active-menu-item':selection == item}" ng-click="setSelection(item);"
+                    ng-repeat="item in alertMenuItems">{{item}}</div>
+            </div>
+            <div class="animate-switch-container" ng-switch on="selection">
+                <div class="animate-switch" ng-switch-when="Immunization Alerts" ng-switch-when-separator="|">
+                    <div class="left-panel">
+                        <div class="alert-title">
+                            <div class="alert-title-icon"></div>{{selection}}
+                        </div>
+                        <div class="alert-list-filters">
+                            <div style="float: left; display: flex; flex-direction: row;">
+                                <label for="name" style="margin: 0px;">Find</label>
+                                <input style="margin-left: 10px; width: 60%;" type="text" id="search"
+                                    ng-model="search" />
+                            </div>
+                            <div style="float: right;">
+                                <button class="cancel-button" ng-disabled="selectedCols.length==0"
+                                    ng-click="deleteSelected();">Delete</button>
+                            </div>
+                        </div>
+                        <div class="alert-list">
+                            <table class="content-table">
+                                <thead>
+                                    <tr>
+                                        <th><input type="checkbox" id="toggler" ng-click="toggleAllAlerts()" /></th>
+                                        <th>Name</th>
+                                        <th>Description</th>
+                                        <th>Web Reference</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr ng-repeat="alert in alerts">
+                                        <td>
+                                            <input class="checks" type="checkbox" ng-click="addRemove(alert.id)" />
+                                        </td>
+                                        <td>{{alert.name}}</td>
+                                        <td>{{alert.description}}</td>
+                                        <td>{{alert.webReference}}</td>
+                                    </tr>
+                                    <!-- class="active-row" -->
+                                </tbody>
+                            </table>
+                        </div>
+                        <div class="alert-list-footer">
+                            <label>Total Results: {{alerts.length}}</label>
+                            <div>
+                                <label>Page</label>
+                                <input type="number" /> 
+                                <label> of {{totalPages}}</label>
+                            </div>
+                            <button>
+                                <</button> <button>>
+                            </button>
+                        </div>
+                    </div>
+                    <div class="right-panel">
+                        <form id="myForm" ng-submit="addAlert(this.form)">
+                            <table class="add-alert-form">
+                                <tr>
+                                    <td><label for="name">Name</label></td>
+                                    <td class="form-input"><input type="text" id="name" ng-class="{'error':nameError}"
+                                            ng-model="form.name" /></td>
+                                </tr>
+                                <tr>
+                                    <td><label for="desc">Description</label></td>
+                                    <td class="form-input"><input type="text" id="desc" ng-class="{'error':descError}"
+                                            ng-model="form.desc" /></td>
+                                </tr>
+                                <tr>
+                                    <td><label for="webRef">Web Ref.</label></td>
+                                    <td class="form-input"><input type="text" id="webRef"
+                                            ng-class="{'error':webRefError}" ng-model="form.webRef" /></td>
+                                </tr>
+                                <tr>
+                                    <td class="form-submit" colspan="2"><button type="submit">Add</button></td>
+                                </tr>
+                            </table>
+
+                            <div class="modal-buttons">
+                                <button class="cancel-button"
+                                    ng-click="hideAlertsPopup('custom-modal-1');">Close</button>
+                                <button class="ok-button" type="submit">OK</button>
+                            </div>
+                        </form>
+                    </div>
+                    <div></div>
+                </div>
+                <div class="animate-switch" style="color: red;" ng-switch-when="null">Please select alerts from above
+                    menu to continue !</div>
+                <div class="animate-switch" ng-switch-default>{{selection}}</div>
+            </div>
+
+        </div>
+    </div>
+    <div class="modal-background"></div>
+</modal>

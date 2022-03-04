@@ -5,8 +5,8 @@
             <span class="closebtn" ng-click="hideBanner()">&times;</span>
             <label> Added to the alerts</label>
         </div>
-        <div ng-show="error" class="banner-alert danger">
-            <span class="closebtn" ng-click="hideBanner()">&times;</span>
+        <div ng-show="danger" class="banner-alert danger">
+            <span class="closebtn" ng-click="error=false">&times;</span>
             <label> Please enter all fields to add to alerts !</label>
         </div>
         <button ng-click="showAlertsPopup('custom-modal-1')">Show Alerts</button>

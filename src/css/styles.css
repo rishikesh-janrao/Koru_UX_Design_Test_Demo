@@ -404,8 +404,18 @@ body.modal-open {
 
 .alert-list-footer input{
     width: 30px;
-    height: 20px;
+    height: 15px;
     margin-right: 10px;
+}
+.btn{
+    border: 2px solid #90bad1;
+    align-items: center;
+    display: flex;
+    flex-direction: row;
+    margin-right: 10px;
+}
+.btn img{
+    filter: invert(60%) sepia(34%) saturate(6284%) hue-rotate(183deg) brightness(94%) contrast(104%);
 }
 
 

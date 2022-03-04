@@ -51,14 +51,14 @@
                             </table>
                         </div>
                         <div class="alert-list-footer">
-                            <label>Total Results: <strong>{{alerts.length}}</strong></label>
+                            <label>Total Results: <strong>{{MasterAlertData.length}}</strong></label>
                             <div style="display: flex; flex-direction: row; align-items: center;">
                                 <p>Page</p>&nbsp;
-                                <input type="number" ng-model="currentPage" autofocus/>
+                                <input type="number" ng-model="currentPage" ng-change="goToPage(currentPage)" autofocus/>
                                 <label> of <strong>{{totalPages}}.</strong></label>
                             </div>
-                            <button>Prev</button>
-                            <button>Next </button>
+                            <div class="btn"><img ng-click="goToPage('B')" src="assets/back.svg" width="20" height="20" /></div>
+                            <div class="btn"><img ng-click="goToPage('N')" src="assets/next.svg" width="20" height="20" /></div>
                         </div>
                     </div>
                     <div class="right-panel">

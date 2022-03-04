@@ -20,8 +20,7 @@
                         <div class="alert-list-filters">
                             <div style="float: left; display: flex; flex-direction: row;">
                                 <label for="name" style="margin: 0px;">Find</label>
-                                <input style="margin-left: 10px; width: 60%;" type="text" id="search"
-                                    ng-model="search" />
+                                <input style="margin-left: 10px; width: 60%;" type="text" ng-model="search" />
                             </div>
                             <div style="float: right;">
                                 <button class="cancel-button" ng-disabled="selectedCols.length==0"
@@ -39,7 +38,7 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    <tr ng-repeat="alert in alerts">
+                                    <tr ng-repeat="alert in alerts | filter:search">
                                         <td>
                                             <input class="checks" type="checkbox" ng-click="addRemove(alert.id)" />
                                         </td>
@@ -52,15 +51,14 @@
                             </table>
                         </div>
                         <div class="alert-list-footer">
-                            <label>Total Results: {{alerts.length}}</label>
-                            <div>
-                                <label>Page</label>
-                                <input type="number" /> 
-                                <label> of {{totalPages}}</label>
+                            <label>Total Results: <strong>{{alerts.length}}</strong></label>
+                            <div style="display: flex; flex-direction: row; align-items: center;">
+                                <p>Page</p>&nbsp;
+                                <input type="number" ng-model="currentPage" autofocus/>
+                                <label> of <strong>{{totalPages}}.</strong></label>
                             </div>
-                            <button>
-                                <</button> <button>>
-                            </button>
+                            <button>Prev</button>
+                            <button>Next </button>
                         </div>
                     </div>
                     <div class="right-panel">
@@ -68,18 +66,18 @@
                             <table class="add-alert-form">
                                 <tr>
                                     <td><label for="name">Name</label></td>
-                                    <td class="form-input"><input type="text" id="name" ng-class="{'error':nameError}"
-                                            ng-model="form.name" /></td>
+                                    <td class="form-input"><input type="text" id="name" ng-class="{'error':nameError && formData.name=='' }"
+                                            ng-model="formData.name" /></td>
                                 </tr>
                                 <tr>
                                     <td><label for="desc">Description</label></td>
-                                    <td class="form-input"><input type="text" id="desc" ng-class="{'error':descError}"
-                                            ng-model="form.desc" /></td>
+                                    <td class="form-input"><input type="text" id="desc" ng-class="{'error':descError  && formData.desc=='' }"
+                                            ng-model="formData.desc" /></td>
                                 </tr>
                                 <tr>
                                     <td><label for="webRef">Web Ref.</label></td>
                                     <td class="form-input"><input type="text" id="webRef"
-                                            ng-class="{'error':webRefError}" ng-model="form.webRef" /></td>
+                                            ng-class="{'error':webRefError  && formData.webRef=='' }" ng-model="formData.webRef" /></td>
                                 </tr>
                                 <tr>
                                     <td class="form-submit" colspan="2"><button type="submit">Add</button></td>

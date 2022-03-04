@@ -9,6 +9,18 @@ app.controller("HomeController", function ($scope, $location, $timeout, DataServ
   $scope.error = false;
   $scope.selectedCols = [];
   $scope.toggleAll = false;
+  $scope.search = "";
+  $scope.MasterAlertData = [];
+  $scope.formData = new Object();
+  $scope.formData.name = '';
+  $scope.formData.desc = '';
+  $scope.formData.webRef = '';
+
+  $scope.reset = function () {
+    $scope.formData.name = '';
+    $scope.formData.desc = '';
+    $scope.formData.webRef = '';
+  }
 
 
   $scope.init = function () {
@@ -25,6 +37,7 @@ app.controller("HomeController", function ($scope, $location, $timeout, DataServ
         alert.webReference = "Test";
         $scope.alerts.push(alert);
       }
+      $scope.MasterAlertData = [...$scope.alerts];
     });
 
   }
@@ -34,8 +47,7 @@ app.controller("HomeController", function ($scope, $location, $timeout, DataServ
   $scope.showAlertsPopup = function (id) {
     if ($scope.alerts.length > 0) {
       ModalService.Open(id);
-      console.log(...$scope.alerts);
-      // $scope.setSelection($scope.alertMenuItems[0]);
+      $scope.initPaging();
     }
   };
 
@@ -55,36 +67,32 @@ app.controller("HomeController", function ($scope, $location, $timeout, DataServ
   $scope.addAlert = function (form) {
     var alert = new Object();
     alert.id = $scope.alerts.length > 0 ? $scope.alerts[$scope.alerts.length - 1].id + 1 : 1;
-    if (form) {
-      $scope.nameError = form.name ? false : true;
-      $scope.descError = form.desc ? false : true;;
-      $scope.webRefError = form.webRef ? false : true;;
-      alert.name = form.name;
-      alert.description = form.desc;
-      alert.webReference = form.webRef;
-      if (!($scope.nameError || $scope.descError || $scope.webRefError)) {
-        $scope.error = false;
-        $scope.nameError = false;
-        $scope.descError = false;
-        $scope.webRefError = false;
-        $scope.alerts.push(alert);
-        console.log($scope.alerts);
-        $scope.added = true;
-        $scope.hideBanner();
-        alert = null;
-        document.getElementById("myForm").reset();
-        form = undefined;
-      } else {
-        $scope.error = true;
-      }
 
+    $scope.nameError = $scope.formData.name ? false : true;
+    $scope.descError = $scope.formData.desc ? false : true;;
+    $scope.webRefError = $scope.formData.webRef ? false : true;;
 
+    if (!($scope.nameError || $scope.descError || $scope.webRefError)) {
+      alert.name = $scope.formData.name;
+      alert.description = $scope.formData.desc;
+      alert.webReference = $scope.formData.webRef;
+      $scope.error = false;
+      $scope.nameError = false;
+      $scope.descError = false;
+      $scope.webRefError = false;
+      $scope.alerts.push(alert);
+      $scope.added = true;
+      $scope.hideBanner();
+      alert = null;
+      document.getElementById("myForm").reset();
+      $scope.reset();
     } else {
       $scope.error = true;
       $scope.nameError = true;
       $scope.descError = true;
       $scope.webRefError = true;
     }
+
   }
   $scope.checkSelected = function (id) {
     var selected = false;
@@ -104,7 +112,6 @@ app.controller("HomeController", function ($scope, $location, $timeout, DataServ
       $scope.alerts.forEach((element, index) => {
         if (ele == element.id) {
           $scope.alerts.splice(index, 1);
-          console.log("Deleted - " + ele, element);
         }
       });
     });
@@ -132,5 +139,12 @@ app.controller("HomeController", function ($scope, $location, $timeout, DataServ
     $scope.toggleCheckboxes($scope.toggleAll);
 
     //Add logic to check / uncheck all checkboxes
+  }
+
+  $scope.initPaging = function () {
+    $scope.totalPages = $scope.alerts.length / 5;
+    $scope.currentPage = 1;
+
+
   }
 });

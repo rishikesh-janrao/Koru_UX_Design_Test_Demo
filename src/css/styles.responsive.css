@@ -1,0 +1,95 @@
+@media only screen and (max-width: 480px) {
+    .menu {
+        height: 3%;
+    }
+
+    .menu-item:nth-child(1) {
+        border-start-start-radius: 10px;
+        margin-left: 2%;
+    }
+
+    .menu-item:last-child {
+        border-top-right-radius: 10px;
+        margin-right: 2%;
+    }
+
+    .modal-buttons {
+        margin-right: 20px;
+    }
+}
+
+@media only screen and (min-width: 700px) {
+    .menu {
+        height: 8%;
+    }
+
+    .menu-item:nth-child(1) {
+        border-start-start-radius: 10px;
+        margin-left: 2%;
+    }
+
+    .menu-item:last-child {
+        border-top-right-radius: 10px;
+        margin-right: 2%;
+    }
+
+    .modal-buttons {
+        margin-right: 20px;
+    }
+}
+
+@media only screen and (min-width: 700px) and (min-height: 700px) {
+    .menu {
+        height: 6%;
+    }
+
+    .menu-item:nth-child(1) {
+        border-start-start-radius: 10px;
+        margin-left: 2%;
+    }
+
+    .menu-item:last-child {
+        border-top-right-radius: 10px;
+        margin-right: 2%;
+    }
+
+    .modal-buttons {
+        margin-right: 20px;
+    }
+}
+
+@media only screen and (min-width: 1200px) {
+    .menu {
+        height: 5%;
+    }
+
+    .menu-item:nth-child(1) {
+        border-start-start-radius: 10px;
+        margin-left: auto;
+    }
+
+    .menu-item:last-child {
+        border-top-right-radius: 10px;
+        margin-right: 2%;
+    }
+
+    .modal-buttons {
+        margin-right: 20px;
+    }
+}
+
+@media only screen and (min-width: 1400px) {
+    .menu {
+        height: 5%;
+    }
+
+    .menu-item:nth-child(1) {
+        border-start-start-radius: 10px;
+        margin-left: auto;
+    }
+
+    .menu-item:last-child {
+        border-top-right-radius: 10px;
+        margin-right: 2%;
+    }
+}

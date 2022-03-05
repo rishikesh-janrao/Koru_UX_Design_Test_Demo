@@ -17,7 +17,7 @@ All the modules and technology stack for this project is aligned toward the prof
 
 1. `npm install`
 2. `grunt serve`
-3. `grunt serve`
+3. `grunt dist` - for prod build
 
 #### NOTE - Project has no `watchers` for html changes, Livereload can be used.
 #### To use live build, Change any file that you want to work on. But after that either add/remove a space to any css file and refresh webpage.
